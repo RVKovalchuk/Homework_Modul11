@@ -8,8 +8,8 @@ public class AnimalCollection {
     //объявляем необходимые для конструктора переменные.
     private final String speciesOfAnimal;
     private final String name;
-    private int age;
-    private double weight;
+    private  int age;
+    private  double weight;
 
     //создаем конструктор.
     public AnimalCollection(String speciesOfAnimal, String name, int age, double weight) {
@@ -32,30 +32,26 @@ public class AnimalCollection {
         }
     }
 
+    //создаем метод для вывода всей информации по speciesOfAnimal и name (не идеальная ситуация).
+    public static void printSpeciesOfAnimalAndName(String speciesOfAnimal, String name) {
+        for (Map.Entry<Integer, AnimalCollection> map : animalList.entrySet()) {
+            if (map.getValue().getSpeciesOfAnimal().equals(speciesOfAnimal) && map.getValue().getName().equals(name)) {
+                System.out.printf("Id: %s - %s \n", map.getKey(), map.getValue().getAllInfo());
+            }
+        }
+    }
+
+    //создаем метод для вывода информации по ключу-id (идеальная ситуация).
+    public static void printSoloInfo(int id) {
+        System.out.println(animalList.get(id).getAllInfo());
+    }
+
     //добавляем getter для возможности получения отдельной информации об экземпляре класса.
-    public String getSpeciesOfAnimal() {
+    private String getSpeciesOfAnimal() {
         return speciesOfAnimal;
     }
-
-    public String getName() {
+    private String getName() {
         return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    //добавляем setter для возможности изменения переменной информации об экземплярах класса.
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
     }
 
     //рассчитываем уникальный id-ключ для экземпляра класса в коллекции.
